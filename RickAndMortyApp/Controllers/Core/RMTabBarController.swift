@@ -8,7 +8,7 @@
 import UIKit
 
 final class RMTabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -50,12 +50,12 @@ final class RMTabBarController: UITabBarController {
         }
         
         setViewControllers(
-    [nav1, nav2, nav3, nav4],
-    animated: true
+            [nav1, nav2, nav3, nav4],
+            animated: true
         )
         
     }
-
-
+    
+    
 }
 
