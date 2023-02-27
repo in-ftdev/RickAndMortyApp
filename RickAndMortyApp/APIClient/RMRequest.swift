@@ -13,7 +13,7 @@ final class RMRequest {
     }
     
     private let endpoint: RMEndpoint
-    private let pathComponents: Set<String>
+    private let pathComponents: [String]
     private let queyParameters: [URLQueryItem]
     
     private var urlString: String {
@@ -21,9 +21,6 @@ final class RMRequest {
         string += "/\(endpoint.rawValue)"
         
         if !pathComponents.isEmpty {
-            //            pathComponents.forEach { each in
-            //                string += "/\(each)"
-            //            }
             pathComponents.forEach({
                 string += "/\($0)"
             })
@@ -40,14 +37,6 @@ final class RMRequest {
                 return "\($0.name)=\(value)"
             }).joined(separator: "&")
             
-            
-            //            let argumentString = queyParameters.compactMap( { urlQueryItem in
-            //                guard let value = urlQueryItem.value else {
-            //                    return nil
-            //                }
-            //                return "\(urlQueryItem.name)=\(value)"
-            //            }).joined(separator: "&")
-            
             string += argumentString
         }
         
@@ -62,7 +51,7 @@ final class RMRequest {
     
     init(
         endpoint: RMEndpoint,
-        pathComponents: Set<String> = [],
+        pathComponents: [String] = [],
         queyParameters: [URLQueryItem] = []
     ) {
         self.endpoint = endpoint
@@ -70,4 +59,8 @@ final class RMRequest {
         self.queyParameters = queyParameters
     }
     
+}
+
+extension RMRequest {
+    static let listCharactersRequests = RMRequest(endpoint: .character)
 }
